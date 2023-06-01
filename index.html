@@ -11,7 +11,7 @@
 <body>
   <h1 id="level-title">Press A Key to Start</h1>
   <div class="container">
-    <div lass="row">
+    <div class="row">
 
       <div type="button" id="green" class="btn green">
 
@@ -33,7 +33,25 @@
 
     </div>
 
+    <div type="button" id="info-btn" class="info-btn">
+      <p id="info-btn-text" class="info-text">How to Play</p>
+    </div>
+    
   </div>
+
+  <div class="info-container">
+    <div class="info-panel">
+      <ul>
+        <li class="info-text">This is a Memory Game.</li>
+        <li class="info-text">Repeat the random sequences of colors given to you in the correct order!</li>
+        <li class="info-text">The more you play, the longer the sequence becomes. Good luck!</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer class="footer-text">
+    ✶ 2023 Gabby Albrecht ✶
+  </footer>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
   <script src="game.js"></script>

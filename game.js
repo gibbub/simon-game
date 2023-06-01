@@ -4,6 +4,7 @@ var userClickedPattern = [];
 var buttonColors = ["red", "blue", "green", "yellow"];
 var level = 0;
 
+/** Begins a new game. */
 $(document).on("keypress", function () {
     if (level === 0) {
         nextSequence();
@@ -19,7 +20,7 @@ $("div.btn").click(function () {
     checkAnswer(userClickedPattern.length - 1);
 });
 
-
+/** Determines next random color. */
 function nextSequence() {
     var randomNumber = Math.floor(Math.random() * 4);
     var randomChosenColor = buttonColors[randomNumber];
@@ -32,7 +33,7 @@ function nextSequence() {
     $("#level-title").text("Level " + level);
 }
 
-
+/** Checks if the player's choice is consistent with the game pattern. */
 function checkAnswer(currentLevel) {
     if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
         if (currentLevel === gamePattern.length - 1) {
@@ -70,4 +71,25 @@ function animatePress(currentColor) {
     setTimeout(function () {
         $("#" + currentColor).removeClass("pressed");
     }, 100);
+}
+
+/** Instructions */
+var instructionsOpen = false;
+var infoPanel = $(".info-panel");
+infoPanel.hide();
+$("div.info-btn").click(animateHowToPlay);
+
+function animateHowToPlay() {
+    animatePress("info-btn");
+    
+    if (instructionsOpen) {
+        $("#info-btn-text").text("How to Play");
+        infoPanel.slideUp();
+        instructionsOpen = false;
+    }
+    else {
+        $("#info-btn-text").text("Close");
+        infoPanel.slideDown();
+        instructionsOpen = true;
+    }
 }
