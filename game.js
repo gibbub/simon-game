@@ -17,6 +17,7 @@ $("div.btn").click(function () {
     userClickedPattern.push(userChosenColor);
     playSound(userChosenColor);
     animatePress(userChosenColor);
+    animatePokemon(userChosenColor);
     checkAnswer(userClickedPattern.length - 1);
 });
 
@@ -27,6 +28,7 @@ function nextSequence() {
     gamePattern.push(randomChosenColor);
 
     $("#" + randomChosenColor).fadeOut(100).fadeIn(100);
+    animatePokemon(randomChosenColor);
     playSound(randomChosenColor);
 
     level++;
@@ -71,6 +73,21 @@ function animatePress(currentColor) {
     setTimeout(function () {
         $("#" + currentColor).removeClass("pressed");
     }, 100);
+}
+
+function animatePokemon(currentColor) {
+    var currentPokemon = $("#" + currentColor + " .pokemon");
+    intShakes = 5;
+    intDistance = 5;
+    intDuration = 500;
+    currentPokemon.each(function () {
+        currentPokemon.css("position","relative"); 
+        for (var i = 1; i <= intShakes; i++) {
+            currentPokemon.animate({left:(intDistance*-1)}, (((intDuration/intShakes)/4)))
+            .animate({left:intDistance}, ((intDuration/intShakes)/2))
+            .animate({left:0}, (((intDuration/intShakes)/4)));
+        }
+    });
 }
 
 /** Instructions */
